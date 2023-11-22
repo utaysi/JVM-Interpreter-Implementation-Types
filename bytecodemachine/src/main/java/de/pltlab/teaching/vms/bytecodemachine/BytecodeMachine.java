@@ -17,8 +17,8 @@ public class BytecodeMachine {
 
 
 // ---- INTERPRETER SELECTION ----
-		//Interpreter interpreter = new DecodeDispatchIntepreter(file);
-		Interpreter interpreter = new IndirectThreadedIntepreter(file);
+		Interpreter interpreter = new DecodeDispatchIntepreter(file);
+		//Interpreter interpreter = new IndirectThreadedIntepreter(file);
 		//Interpreter interpreter = new DirectThreadedIntepreter(file);
 
 		interpreter.run();
