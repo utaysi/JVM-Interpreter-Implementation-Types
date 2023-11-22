@@ -28,9 +28,9 @@ public class DecodeDispatchIntepreter extends Interpreter {
 		while(!halted()) {
 			directJump();
 
-			//int opcode = b & 0xff = 0x03
+
 			int opcode = ((int) getBytes()[pc]) & 0xff;
-			//byte byteValue = getBytes()[pc];
+
 			extraction();
 
 			switch (opcode) {
@@ -164,7 +164,7 @@ public class DecodeDispatchIntepreter extends Interpreter {
 
 	}
 	private void interp_iload_0(){
-		int value = localVariables[0];
+		int value = (int) getVariableValue(0);
 		push(value);
 		pc += 1;
 		indirectJump();
@@ -187,7 +187,7 @@ public class DecodeDispatchIntepreter extends Interpreter {
 
 	}
 	private void interp_iload_2(){
-		int value = localVariables[2];
+		int value = (int) getVariableValue(2);
 		push(value);
 		pc += 1;
 		indirectJump();
@@ -203,7 +203,8 @@ public class DecodeDispatchIntepreter extends Interpreter {
 		indirectJump();
 	}
 	private void interp_iload_1(){
-		int value = localVariables[1];
+
+		int value = (int) getVariableValue(1);
 		push(value);
 		pc += 1;
 		indirectJump();
@@ -247,22 +248,16 @@ public class DecodeDispatchIntepreter extends Interpreter {
 		return stack[sp--];
 	}
 
-//	private int getNextByte() {
-//		if (pc < getBytes().length) {
-//			byte nextByte = getBytes()[pc];
-//			pc++; // Move the program counter to the next byte
-//			return nextByte;
-//		} else {
-//			// Handle the case where the end of the bytecode is reached
-//			throw new RuntimeException("End of bytecode reached");
-//		}
-//		//return  getBytes()[pc] & 0xFF; // Assuming bytecode is the array containing the bytecode instructions
-//	}
 
 	@Override
 	protected Object getVariableValue(int index) {
 		// TODO implement properly
-		return null;
+		if (index >= 0 && index < localVariables.length) {
+			return localVariables[index];
+		} else {
+			// Handle index out of bounds or other error cases
+			return null;
+		}
 	}
 
 }

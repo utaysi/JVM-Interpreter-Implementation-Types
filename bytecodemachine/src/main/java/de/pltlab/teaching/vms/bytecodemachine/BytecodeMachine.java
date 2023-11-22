@@ -10,11 +10,11 @@ public class BytecodeMachine {
 		//File file = Path.of("target/test-classes/Simple.class".replace('/', File.separatorChar)).toFile();
 //		File file = Path.of("target/test-classes/GGT.class".replace('/', File.separatorChar)).toFile();
 //		File file = Path.of("target/test-classes/Factorial.class".replace('/', File.separatorChar)).toFile();
-		File file = Path.of("src/test/java/GGT.class".replace('/', File.separatorChar)).toFile();
+		File file = Path.of("src/test/java/Factorial.class".replace('/', File.separatorChar)).toFile();
 
 
 		Interpreter interpreter = new DecodeDispatchIntepreter(file);
-//		Interpreter interpreter = new IndirectThreadedIntepreter(file);
+		//Interpreter interpreter = new IndirectThreadedIntepreter(file);
 //		Interpreter interpreter = new DirectThreadedIntepreter(file);
 
 		interpreter.run();
