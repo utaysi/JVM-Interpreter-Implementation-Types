@@ -57,7 +57,6 @@ public class IndirectThreadedIntepreter extends Interpreter {
 		
 		int opcode = ((int) getBytes()[pc]) & 0xff;
 		extraction();
-		
 		indirectJump();
 		bridgeTo(lookup(opcode));
 	}

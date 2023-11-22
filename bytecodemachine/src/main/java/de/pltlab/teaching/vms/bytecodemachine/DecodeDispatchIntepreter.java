@@ -102,13 +102,101 @@ public class DecodeDispatchIntepreter extends Interpreter {
 					indirectJump();
 					interp_ISUB();
 				}
+				case 0x60->{
+					indirectJump();
+					interp_IADD();
+				}
+				case 0xa2->{
+					indirectJump();
+					interp_if_icmpge();
+				}
+				case 0x5->{
+					indirectJump();
+					interp_iconst_2();
+				}
+				case 0x3e->{
+					indirectJump();
+					interp_istore_3();
+				}
+				case 0x1d->{
+					indirectJump();
+					interp_iload_3();
+				}
+				case 0x54->{
+					indirectJump();
+					interp_bastore();
+				}
+				case 0x50->{
+					indirectJump();
+					interp_lastore();
+				}
 				// TODO add further cases
 				default -> throw new IllegalArgumentException("Unsupported opcode: " + opcode);
 			}
 			directJump();
+
 		}
 	}
 
+	private void interp_lastore() {
+		// Stores a long value into an array
+		long value = pop(); // Pop the long value from the operand stack
+		int index = pop(); // Pop the index from the operand stack
+		int[] arrayRef = new int[]{pop()}; // Pop the array reference from the operand stack
+		arrayRef[index] = (int) value; // Store the long value into the array at the specified index
+		pc += 1;
+		indirectJump();
+	}
+	private void interp_bastore() {
+		// Stores a byte or boolean value into an array
+		int value = pop(); // Pop the value to be stored from the operand stack
+		int index = pop(); // Pop the index from the operand stack
+		int[] arrayRef = new int[]{pop()}; // Pop the array reference from the operand stack and cast it to byte array
+		arrayRef[index] = (byte) value; // Store the value in the array at the specified index
+		pc += 1;
+		indirectJump();
+	}
+	private void interp_iload_3() {
+		// Loads the integer value from local variable 3 onto the operand stack
+		int value = (int )getVariableValue(3); // Load the value from local variable 3
+		push(value); // Push the value onto the operand stack
+		pc += 1;
+		indirectJump();
+	}
+	private void interp_istore_3() {
+		// Stores the integer value from the top of the operand stack into local variable 3
+		int value = pop(); // Pop the value from the operand stack
+		localVariables[3] = value; // Store the value in local variable 3
+		pc += 1;
+		indirectJump();
+	}
+
+	private void interp_iconst_2() {
+		// Pushes the integer value 2 onto the operand stack
+		push(2);
+		pc += 1;
+		indirectJump();
+	}
+	private void interp_if_icmpge() {
+		// Conditional branch if the second value is greater than or equal to the first value
+		int value2 = pop(); // Pop the second value from the operand stack
+		int value1 = pop(); // Pop the first value from the operand stack
+		if (value1 >= value2) {
+			pc += 1; // Increment the program counter to perform the branch
+		} else {
+			pc += 3; // Skip the branch offset if the condition is not met
+		}
+		indirectJump();
+	}
+	private void interp_IADD() {
+		// Adds two integers from the top of the operand stack
+		int value2 = pop(); // Pop the second value from the operand stack
+		int value1 = pop(); // Pop the first value from the operand stack
+		int result = value1 + value2; // Add the two values
+		push(result); // Push the result back onto the operand stack
+		pc += 1;
+		indirectJump();
+	}
 	private void interp_ISUB(){
 		int value2 = pop();
 		int value1 = pop();
