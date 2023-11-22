@@ -111,15 +111,12 @@ public class DirectThreadedIntepreter extends Interpreter {
 						throw new UnsupportedOperationException("Unsupported opcode: 0x" + Integer.toHexString(opcode));
 					};
 					indirectJump();
-//					System.out.println("Unknown opcode: " + opcode);
 					break;
 			}
 			//System.out.println("Unknown opcode: " + opcode);
 		}
 		//pc = 0;
-		// Implementation of the interpret method
-		// Iterate over preDecodedInstructions and execute each one
-		//extraction();
+
 		for (Runnable instruction : preDecodedInstructions) {
 
 //			if (instruction != null) {
