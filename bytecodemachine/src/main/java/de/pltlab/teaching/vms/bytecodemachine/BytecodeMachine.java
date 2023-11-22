@@ -7,15 +7,19 @@ import java.nio.file.Path;
 public class BytecodeMachine {
 	
 	public static void main(String[] args) throws IOException {
-		//File file = Path.of("target/test-classes/Simple.class".replace('/', File.separatorChar)).toFile();
+// ---- FILE SELECTION -----
+//		File file = Path.of("target/test-classes/Simple.class".replace('/', File.separatorChar)).toFile();
 //		File file = Path.of("target/test-classes/GGT.class".replace('/', File.separatorChar)).toFile();
 //		File file = Path.of("target/test-classes/Factorial.class".replace('/', File.separatorChar)).toFile();
-		File file = Path.of("src/test/java/Factorial.class".replace('/', File.separatorChar)).toFile();
+//		File file = Path.of("src/test/java/Simple.class".replace('/', File.separatorChar)).toFile();
+		File file = Path.of("src/test/java/GGT.class".replace('/', File.separatorChar)).toFile();
+// 		File file = Path.of("src/test/java/Factorial.class".replace('/', File.separatorChar)).toFile();
 
 
-		Interpreter interpreter = new DecodeDispatchIntepreter(file);
-		//Interpreter interpreter = new IndirectThreadedIntepreter(file);
-//		Interpreter interpreter = new DirectThreadedIntepreter(file);
+// ---- INTERPRETER SELECTION ----
+//		Interpreter interpreter = new DecodeDispatchIntepreter(file);
+//		Interpreter interpreter = new IndirectThreadedIntepreter(file);
+		Interpreter interpreter = new DirectThreadedIntepreter(file);
 
 		interpreter.run();
 	}
