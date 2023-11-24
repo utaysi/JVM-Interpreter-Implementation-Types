@@ -12,7 +12,7 @@ We tested these interpreters using four different programs, enabling a detailed 
 ## Performance Insights
 The comparative analysis underscored fascinating performance trade-offs among the interpreter types, illuminating the impact of design choices on execution dynamics.
 
-![Alt text](/images/conclusion-table.png?raw=true "Title")
+![conclusion-table](/images/conclusion-table.png)
 
 ## Project Contributors
 - **Mohamad Kaser**
