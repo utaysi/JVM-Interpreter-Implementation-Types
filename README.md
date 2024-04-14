@@ -7,10 +7,10 @@ This repository presents a suite of Java Virtual Machine (JVM) interpreters deve
 - **Indirect-Threaded Interpreter**: Leverages a method dispatch table to streamline instruction execution.
 - **Direct-Threaded Interpreter**: Employs computed gotos for instruction handling, thereby reducing dispatch overhead.
 
-We tested these interpreters using four different programs, enabling a detailed analysis of their respective efficiencies and execution characteristics.
+We implemented and tested these interpreters using four different programs, enabling a detailed analysis of their respective efficiencies and execution characteristics.
 
 ## Performance Insights
-The comparative analysis underscored fascinating performance trade-offs among the interpreter types, illuminating the impact of design choices on execution dynamics.
+The comparative analysis underscored fascinating performance trade-offs among the interpreter types, showcasing the impact of design choices on execution dynamics.
 
 ![conclusion-table](/images/conclusion-table.png)
 
